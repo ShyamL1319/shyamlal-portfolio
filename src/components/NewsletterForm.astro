@@ -1,0 +1,64 @@
+<form class="newsletter-form" data-newsletter-form>
+  <label class="sr-only" for="newsletter-email">Email address</label>
+
+  <div class="form-control">
+    <input
+      id="newsletter-email"
+      name="email"
+      type="email"
+      inputmode="email"
+      autocomplete="email"
+      placeholder="Email address"
+      aria-label="Email address"
+      required
+    />
+    <button type="submit">Join the newsletter</button>
+  </div>
+
+  <p class="form-status" data-status aria-live="polite">Enter your email</p>
+</form>
+
+<script>
+  const forms = document.querySelectorAll('[data-newsletter-form]');
+
+  forms.forEach((form) => {
+    const input = form.querySelector('input[name="email"]');
+    const status = form.querySelector('[data-status]');
+    const button = form.querySelector('button[type="submit"]');
+
+    if (!input || !status || !button) return;
+
+    const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    const updateState = (state) => {
+      form.dataset.state = state;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const email = input.value.trim();
+
+      if (!validateEmail(email)) {
+        updateState('error');
+        status.textContent = 'Please enter a valid email address.';
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+
+      input.setAttribute('aria-invalid', 'false');
+      updateState('loading');
+      button.disabled = true;
+      status.textContent = 'Joining...';
+
+      await new Promise((resolve) => setTimeout(resolve, 900));
+
+      // TODO: Replace this mock submit with a real service integration such as Buttondown, Beehiiv, or ConvertKit.
+      updateState('success');
+      button.disabled = false;
+      status.textContent = "You're on the list.";
+      form.reset();
+    });
+  });
+</script>

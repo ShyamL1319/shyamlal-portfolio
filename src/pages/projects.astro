@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    number: '01',
+    title: 'Project Name',
+    category: 'Product design / engineering',
+    problem: '[Placeholder problem statement.]',
+    built: '[Placeholder description of what was built.]',
+    role: '[Placeholder role.]',
+    outcome: '[Placeholder outcome or takeaway.]',
+    technologies: ['[Technology]', '[Technology]', '[Technology]'],
+    links: ['Project link', 'GitHub'],
+  },
+  {
+    number: '02',
+    title: 'Project Name',
+    category: 'Tools / systems / experimentation',
+    problem: '[Placeholder problem statement.]',
+    built: '[Placeholder description of what was built.]',
+    role: '[Placeholder role.]',
+    outcome: '[Placeholder outcome or takeaway.]',
+    technologies: ['[Technology]', '[Technology]', '[Technology]'],
+    links: ['Project link', 'GitHub'],
+  },
+  {
+    number: '03',
+    title: 'Project Name',
+    category: 'Research / interface / product',
+    problem: '[Placeholder problem statement.]',
+    built: '[Placeholder description of what was built.]',
+    role: '[Placeholder role.]',
+    outcome: '[Placeholder outcome or takeaway.]',
+    technologies: ['[Technology]', '[Technology]', '[Technology]'],
+    links: ['Project link', 'GitHub'],
+  },
+];
+---
+
+<Layout
+  title="Projects | Shyam Lal"
+  description="A placeholder project archive for Shyam Lal, documenting engineering ideas and side work."
+>
+  <section class="section page-hero">
+    <div class="container narrow">
+      <p class="eyebrow">Projects</p>
+      <h1>Selected work and ideas in progress.</h1>
+      <p class="lead">[Placeholder introduction.] These entries are intentionally simple and editorial, designed to later hold real case studies and finished work.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container case-grid">
+      {projects.map((project) => (
+        <article class="case-item">
+          <div class="case-item__header">
+            <span class="project-index">{project.number}</span>
+            <span class="project-category">{project.category}</span>
+          </div>
+
+          <div>
+            <h3>{project.title}</h3>
+          </div>
+
+          <div class="meta-list" aria-label="Project technologies">
+            {project.technologies.map((technology) => <span>{technology}</span>)}
+          </div>
+
+          <div class="case-body">
+            <div>
+              <h4>Problem</h4>
+              <p>{project.problem}</p>
+            </div>
+
+            <div>
+              <h4>What I built</h4>
+              <p>{project.built}</p>
+            </div>
+
+            <div>
+              <h4>Role</h4>
+              <p>{project.role}</p>
+            </div>
+
+            <div>
+              <h4>Outcome</h4>
+              <p>{project.outcome}</p>
+            </div>
+          </div>
+
+          <div class="link-list" aria-label="Project links">
+            {project.links.map((link) => <a href="#">{link}</a>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

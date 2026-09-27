@@ -1,11 +1,117 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import ProjectItem from '../components/ProjectItem.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const selectedProjects = [
+  {
+    number: '01',
+    title: 'Project Name',
+    description: '[Short description of a project, system, or interface idea.]',
+    category: 'Product design / engineering',
+    href: '/projects',
+  },
+  {
+    number: '02',
+    title: 'Project Name',
+    description: '[Short description of a project, system, or interface idea.]',
+    category: 'Tools / systems',
+    href: '/projects',
+  },
+  {
+    number: '03',
+    title: 'Project Name',
+    description: '[Short description of a project, system, or interface idea.]',
+    category: 'Research / experimentation',
+    href: '/projects',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Shyam Lal | Portfolio and Newsletter"
+  description="A minimal editorial portfolio and newsletter landing page for Shyam Lal."
+>
+  <section class="section hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Software engineer / builder / researcher</p>
+        <h1>SHYAM<br />LAL</h1>
+        <p class="lead">
+          [Short introduction goes here.] I build thoughtful systems, compelling interfaces, and
+          products that help complex ideas feel clear.
+        </p>
+
+        <div class="button-row">
+          <a href="/projects" class="button primary">View projects</a>
+          <a href="#newsletter" class="button secondary">Join the newsletter</a>
+        </div>
+      </div>
+
+      <aside class="hero-aside">
+        <div class="quote-box">
+          <p class="small-kicker">Current focus</p>
+          <p>Writing, building, and learning in public.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container intro-grid">
+      <SectionHeading eyebrow="Who I am" title="[Short introduction goes here.]" />
+
+      <div class="intro-copy">
+        <p class="feature-copy">
+          [Placeholder text.] I like building software that balances utility with clarity — systems
+          that are useful, readable, and worth returning to.
+        </p>
+        <p class="feature-copy">
+          [Placeholder text.] My interests include product thinking, software craftsmanship, systems
+          design, and the small details that make difficult work feel approachable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Selected projects"
+        title="Things I’ve been building."
+        intro="[Placeholder intro line.]"
+      />
+
+      <div class="project-list">
+        {selectedProjects.map((project) => (
+          <ProjectItem
+            number={project.number}
+            title={project.title}
+            description={project.description}
+            category={project.category}
+            href={project.href}
+            isHome={true}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter" class="section">
+    <div class="container">
+      <div class="newsletter-panel">
+        <div class="newsletter-copy">
+          <p class="eyebrow">One email. Every week.</p>
+          <h2>Notes on software, building, and learning in public.</h2>
+          <p>
+            [Placeholder copy.] The newsletter will eventually include experiments, systems thinking,
+            product ideas, and the lessons that come from building and learning in public.
+          </p>
+        </div>
+
+        <NewsletterForm />
+      </div>
+    </div>
+  </section>
 </Layout>

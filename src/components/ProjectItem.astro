@@ -1,0 +1,17 @@
+---
+const { number, title, description, category, href = '#', isHome = false } = Astro.props;
+---
+
+<article class:list={['project-item', { 'project-item--home': isHome }]}>
+  <div class="project-item__meta">
+    <span class="project-index">{number}</span>
+    <span class="project-category">{category}</span>
+  </div>
+
+  <div class="project-item__copy">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+
+  <a href={href} class="project-link">→ View project</a>
+</article>
