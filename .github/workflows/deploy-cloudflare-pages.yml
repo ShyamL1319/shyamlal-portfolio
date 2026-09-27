@@ -8,6 +8,8 @@ on:
 
 jobs:
   deploy:
+    environment: prod
+    
     runs-on: ubuntu-latest
     permissions:
       contents: read
